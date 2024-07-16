@@ -8,28 +8,45 @@ import 'package:intl/intl.dart';
 ///
 /// This widget shows a circular progress indicator that fills up over time,
 /// and displays a reward value that increases at specified intervals.
-///
-/// Example:
-/// ```dart
-/// WatchRewards(
-///   radius: 50.0,
-///   foregroundColor: Colors.blue,
-///   backgroundColor: Colors.grey,
-///   buttonColorBegin: Colors.blue,
-///   buttonColorEnd: Colors.lightBlue,
-///   buttonTitle: 'Claim',
-///   value: 100.0,
-///   stepValue: 10.0,
-///   watchInteval: 100,
-///   icon: Icon(Icons.star),
-///   onValueChanged: (value) => print('New value: $value'),
-///   onTap: () => print('Button tapped'),
-/// )
-/// ```
+
 class WatchRewards extends StatefulWidget {
   /// Creates a WatchRewards widget.
   ///
+  /// Required arguments:
+  /// * [value] - The current reward value.
+  /// * [onValueChanged] - A callback function that is called whenever the reward value changes.
+  /// * [foregroundColor] - The color of the foreground progress indicator and step indicator.
+  /// * [backgroundColor] - The color of the background of the progress indicator.
+  /// * [radius] - The radius of the progress indicator and button (defaults to 32).
+  /// * [buttonColorBegin] - The starting color of the button's gradient.
+  /// * [buttonColorEnd] - The ending color of the button's gradient.
+  /// * [buttonTitle] - The title displayed on the button.
+  /// * [onTap] - A callback function that is called when the button is tapped.
+  /// * [controller] (optional) - An optional WatchRewardsController to control the watch progress.
+  /// * [stepValue] (optional) - The amount of reward value to be added per step (defaults to 0.5).
+  /// * [watchInteval] (optional) - The interval in milliseconds between each watch step (defaults to 5).
+  /// * [symbol] (optional) - The currency symbol to be displayed with the reward value (defaults to '').
+  /// * [icon] - The widget to be displayed in the center of the progress indicator.
+  ///
   /// All parameters are required except [controller] and [symbol].
+  ///
+  /// Here's an example of how to use WatchRewards:
+  /// ```dart
+  /// WatchRewards(
+  ///   radius: 50.0,
+  ///   foregroundColor: Colors.blue,
+  ///   backgroundColor: Colors.grey,
+  ///   buttonColorBegin: Colors.blue,
+  ///   buttonColorEnd: Colors.lightBlue,
+  ///   buttonTitle: 'Claim',
+  ///   value: 100.0,
+  ///   stepValue: 10.0,
+  ///   watchInteval: 100,
+  ///   icon: Icon(Icons.star),
+  ///   onValueChanged: (value) => print('New value: $value'),
+  ///   onTap: () => print('Button tapped'),
+  /// )
+  /// ```
   const WatchRewards({
     super.key,
     required this.radius,
@@ -118,6 +135,7 @@ class _WatchRewardsState extends State<WatchRewards> {
     }
   }
 
+  /// Starts the watch progress.
   start() {
     if (!_isRunning) {
       _isRunning = true;
@@ -125,6 +143,7 @@ class _WatchRewardsState extends State<WatchRewards> {
     }
   }
 
+  /// Stops the watch progress and resets the counter and value.
   stop() {
     if (_isRunning) {
       _isRunning = false;
@@ -135,6 +154,7 @@ class _WatchRewardsState extends State<WatchRewards> {
     }
   }
 
+  /// Pauses the watch progress.
   pause() {
     if (_isRunning) {
       _isRunning = false;
@@ -142,6 +162,8 @@ class _WatchRewardsState extends State<WatchRewards> {
     }
   }
 
+  /// Opens a stream that emits a value every [watchInteval] milliseconds,
+  /// incrementing a counter on each emission.
   void openStream() {
     //
     _stream = Stream.periodic(
@@ -177,7 +199,7 @@ class _WatchRewardsState extends State<WatchRewards> {
     final popupHeight = 12 * 2.5;
 
     final indicatorContainerWidth = popupWidth;
-    final indicatorContainerHeight = popupWidth + (widget.radius * 0.25);
+    final indicatorContainerHeight = popupWidth + (widget.radius * 0.70);
     final buttonWidth = widget.radius * 2.5;
     final buttonHeight = 28.0;
 
@@ -234,7 +256,7 @@ class _WatchRewardsState extends State<WatchRewards> {
         SizedBox(height: 8.0),
 
         // counter
-        SizedBox(
+        Container(
           width: indicatorContainerWidth,
           height: indicatorContainerHeight,
           child: Stack(
@@ -246,30 +268,32 @@ class _WatchRewardsState extends State<WatchRewards> {
                 child: Stack(
                   children: [
                     // background
-                    Container(
-                      width: popupWidth,
-                      height: popupWidth,
-                      decoration: BoxDecoration(
-                        color: widget.backgroundColor,
-                        borderRadius: BorderRadius.circular(widget.radius),
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            // icon
-                            widget.icon,
-                            // value
-                            Text(
-                              _numberFormat.format(widget.value),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium!
-                                  .apply(
-                                      color: widget.foregroundColor,
-                                      fontWeightDelta: 2),
-                            )
-                          ],
+                    Positioned.fill(
+                      child: Container(
+                        width: popupWidth,
+                        height: popupWidth,
+                        decoration: BoxDecoration(
+                          color: widget.backgroundColor,
+                          borderRadius: BorderRadius.circular(widget.radius),
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              // icon
+                              widget.icon,
+                              // value
+                              Text(
+                                _numberFormat.format(widget.value),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium!
+                                    .apply(
+                                        color: widget.foregroundColor,
+                                        fontWeightDelta: 2),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -281,42 +305,42 @@ class _WatchRewardsState extends State<WatchRewards> {
                         color: widget.foregroundColor,
                         value: (_count * 0.01),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
+
+              //button
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: GestureDetector(
+                  onTap: () => widget.onTap(),
+                  child: Container(
+                    width: buttonWidth,
+                    height: buttonHeight,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.0),
+                        gradient: LinearGradient(
+                          colors: [
+                            widget.buttonColorBegin,
+                            widget.buttonColorEnd,
+                          ],
+                        )),
+                    child: Center(
+                      child: Text(
+                        widget.buttonTitle,
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium!
+                            .apply(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
-
-        //button
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: GestureDetector(
-            onTap: () => widget.onTap(),
-            child: Container(
-              width: buttonWidth,
-              height: buttonHeight,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.0),
-                  gradient: LinearGradient(
-                    colors: [
-                      widget.buttonColorBegin,
-                      widget.buttonColorEnd,
-                    ],
-                  )),
-              child: Center(
-                child: Text(
-                  widget.buttonTitle,
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelMedium!
-                      .apply(color: Colors.white),
-                ),
-              ),
-            ),
-          ),
-        )
       ],
     );
   }

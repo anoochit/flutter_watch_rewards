@@ -1,4 +1,4 @@
-# Watch Reward
+# Watch Rewards
 
 A customizable Flutter widget that displays a circular progress indicator
 with rewards functionality.
@@ -8,7 +8,7 @@ and displays a reward value that increases at specified intervals.
 
 ## Example
 
-Example:
+Here's an example of how to use WatchRewards:
 
 ```dart
 WatchRewards(

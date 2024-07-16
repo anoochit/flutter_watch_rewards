@@ -85,7 +85,40 @@
     
 <section class="desc markdown">
   <p>Creates a WatchRewards widget.</p>
+<p>Required arguments:</p>
+<ul>
+<li><a href="../../flutter_watch_rewards/WatchRewards/value.html">value</a> - The current reward value.</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/onValueChanged.html">onValueChanged</a> - A callback function that is called whenever the reward value changes.</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/foregroundColor.html">foregroundColor</a> - The color of the foreground progress indicator and step indicator.</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/backgroundColor.html">backgroundColor</a> - The color of the background of the progress indicator.</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/radius.html">radius</a> - The radius of the progress indicator and button (defaults to 32).</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/buttonColorBegin.html">buttonColorBegin</a> - The starting color of the button's gradient.</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/buttonColorEnd.html">buttonColorEnd</a> - The ending color of the button's gradient.</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/buttonTitle.html">buttonTitle</a> - The title displayed on the button.</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/onTap.html">onTap</a> - A callback function that is called when the button is tapped.</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/controller.html">controller</a> (optional) - An optional WatchRewardsController to control the watch progress.</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/stepValue.html">stepValue</a> (optional) - The amount of reward value to be added per step (defaults to 0.5).</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/watchInteval.html">watchInteval</a> (optional) - The interval in milliseconds between each watch step (defaults to 5).</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/symbol.html">symbol</a> (optional) - The currency symbol to be displayed with the reward value (defaults to '').</li>
+<li><a href="../../flutter_watch_rewards/WatchRewards/icon.html">icon</a> - The widget to be displayed in the center of the progress indicator.</li>
+</ul>
 <p>All parameters are required except <a href="../../flutter_watch_rewards/WatchRewards/controller.html">controller</a> and <a href="../../flutter_watch_rewards/WatchRewards/symbol.html">symbol</a>.</p>
+<p>Here's an example of how to use WatchRewards:</p>
+<pre class="language-dart"><code class="language-dart">WatchRewards(
+  radius: 50.0,
+  foregroundColor: Colors.blue,
+  backgroundColor: Colors.grey,
+  buttonColorBegin: Colors.blue,
+  buttonColorEnd: Colors.lightBlue,
+  buttonTitle: 'Claim',
+  value: 100.0,
+  stepValue: 10.0,
+  watchInteval: 100,
+  icon: Icon(Icons.star),
+  onValueChanged: (value) =&gt; print('New value: $value'),
+  onTap: () =&gt; print('Button tapped'),
+)
+</code></pre>
 </section>
 
 
@@ -142,7 +175,7 @@
 <footer>
   <span class="no-break">
     flutter_watch_rewards
-      1.0.0
+      1.1.0
   </span>
 
   
