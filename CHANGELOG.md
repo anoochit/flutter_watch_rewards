@@ -12,4 +12,4 @@
 
 ## 1.1.2
 
-- Update button layout position
+- Update doc and readme
