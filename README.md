@@ -26,3 +26,7 @@ WatchRewards(
   onTap: () => print('Button tapped'),
 )
 ```
+
+## Screenshot
+
+<img src="https://raw.githubusercontent.com/anoochit/flutter_watch_rewards/master/screenshots/screenshot.gif" width="320">
