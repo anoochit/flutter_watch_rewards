@@ -60,15 +60,15 @@ and displays a reward value that increases at specified intervals.</p>
 <p>Here's an example of how to use WatchRewards:</p>
 <pre class="language-dart"><code class="language-dart">WatchRewards(
   radius: 32.0,
-  foregroundColor: Colors.blue,
-  backgroundColor: Colors.grey,
-  buttonColorBegin: Colors.blue,
-  buttonColorEnd: Colors.lightBlue,
+  foregroundColor: Colors.red,
+  backgroundColor: Colors.pink.shade50,
+  buttonColorBegin: Colors.amber,
+  buttonColorEnd: Colors.pink,
   buttonTitle: 'Claim',
   value: 100.0,
   stepValue: 10.0,
   watchInteval: 5,
-  icon: Icon(Icons.star),
+  icon: Icon(Icons.star, color: Colors.amber.shade500),
   onValueChanged: (value) =&gt; print('New value: $value'),
   onTap: () =&gt; print('Button tapped'),
 )
@@ -122,7 +122,7 @@ and displays a reward value that increases at specified intervals.</p>
 <footer>
   <span class="no-break">
     flutter_watch_rewards
-      1.1.0
+      1.1.2
   </span>
 
   
