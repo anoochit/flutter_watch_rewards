@@ -33,16 +33,16 @@ class WatchRewards extends StatefulWidget {
   /// Here's an example of how to use WatchRewards:
   /// ```dart
   /// WatchRewards(
-  ///   radius: 50.0,
-  ///   foregroundColor: Colors.blue,
-  ///   backgroundColor: Colors.grey,
-  ///   buttonColorBegin: Colors.blue,
-  ///   buttonColorEnd: Colors.lightBlue,
+  ///   radius: 32.0,
+  ///   foregroundColor: Colors.red,
+  ///   backgroundColor: Colors.pink.shade50,
+  ///   buttonColorBegin: Colors.amber,
+  ///   buttonColorEnd: Colors.pink,
   ///   buttonTitle: 'Claim',
   ///   value: 100.0,
   ///   stepValue: 10.0,
-  ///   watchInteval: 100,
-  ///   icon: Icon(Icons.star),
+  ///   watchInteval: 5,
+  ///   icon: Icon(Icons.star, color: Colors.amber.shade500),
   ///   onValueChanged: (value) => print('New value: $value'),
   ///   onTap: () => print('Button tapped'),
   /// )

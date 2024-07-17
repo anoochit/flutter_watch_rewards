@@ -1,6 +1,6 @@
 name: flutter_watch_rewards
 description: "A widget that display a circular progress indicator with a watch rewards value"
-version: 1.1.1
+version: 1.1.2
 repository: https://github.com/anoochit/flutter_watch_rewards
 
 environment:
